@@ -1,7 +1,9 @@
 const { renderSync } = require('sass');
 const { processString } = require('uglifycss');
-const { join } = require('path');
+const { join, dirname } = require('path');
 const sassImporter = require('sass-module-importer');
+const execa = require('execa');
+const { readFileSync } = require('fs');
 
 const importer = sassImporter();
 const includePaths = ['./node_modules', join(process.cwd(), 'node_modules')];
@@ -30,20 +32,24 @@ module.exports = function () {
       output: ['.js']
     },
     async load({ filePath, isDev }) {
-      let data = renderSync({
-        file: filePath,
-        importer,
-        includePaths
-      }).css.toString();
+      const input = readFileSync(filePath, 'utf-8');
+      const options = { input, preferLocal: true };
+      const args = ['--stdin', '--load-path', dirname(filePath)];
+
+      let { stdout, stderr } = await execa('sass', args, options);
+
+      if (stderr) {
+        throw stderr;
+      }
 
       if (!isDev) {
-        data = processString(data, {});
+        stdout = processString(stdout, {});
       }
 
       if (/\.lit\.scss$/.exec(filePath)) {
-          return  `import { css } from 'lit-element'; export default css${stringToTemplateLiteral(data)};`
+          return  `import { css } from 'lit-element'; export default css${stringToTemplateLiteral(stdout)};`
       } else {
-          return `const style = document.createElement('style'); style.innerHTML = ${stringToTemplateLiteral(data)}; document.head.appendChild(style);`;
+          return `const style = document.createElement('style'); style.innerHTML = ${stringToTemplateLiteral(stdout)}; document.head.appendChild(style);`;
       }
     }
   };
