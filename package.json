@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "release": "standard-version"
+    "release": "standard-version",
+    "postrelease": "git push --follow-tags origin main && npm publish"
   },
   "author": "Caleb D. Williams<caleb.d.williams@gmail.com>",
   "repository": {
