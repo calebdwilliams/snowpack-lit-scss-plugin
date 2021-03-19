@@ -1,7 +1,7 @@
 const { renderSync } = require('sass');
 const { processString } = require('uglifycss');
 const { join } = require('path');
-const sassImporter = require('node-sass-importer');
+const sassImporter = require('sass-module-importer');
 
 const importer = sassImporter();
 const includePaths = ['./node_modules', join(process.cwd(), 'node_modules')];
