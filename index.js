@@ -1,5 +1,5 @@
 const { processString } = require('uglifycss');
-const { dirname } = require('path');
+const { dirname, join } = require('path');
 const execa = require('execa');
 const { readFileSync } = require('fs');
 
@@ -30,7 +30,7 @@ module.exports = function () {
     async load({ filePath, isDev }) {
       const input = readFileSync(filePath, 'utf-8');
       const options = { input, preferLocal: true };
-      const args = ['--stdin', '--load-path', dirname(filePath)];
+      const args = ['--stdin', '--load-path', dirname(filePath), '--load-path', join(process.cwd(), 'node_modules')];
 
       let { stdout, stderr } = await execa('sass', args, options);
 
