@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/calebdwilliams/snowpack-lit-scss-plugin/compare/v0.0.6...v0.0.7) (2021-03-19)
+
+
+### Features
+
+* add support for node_modules imports ([ec08537](https://github.com/calebdwilliams/snowpack-lit-scss-plugin/commit/ec085370f9713f8c7d555afa7653650e052980f4))
+
 ### [0.0.6](https://github.com/calebdwilliams/snowpack-lit-scss-plugin/compare/v0.0.5...v0.0.6) (2021-03-19)
 
 
