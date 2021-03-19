@@ -1,5 +1,10 @@
 const { renderSync } = require('sass');
-const importer = require('node-sass-importer');
+const { processString } = require('uglifycss');
+const { join } = require('path');
+const sassImporter = require('node-sass-importer');
+
+const importer = sassImporter();
+const includePaths = ['./node_modules', join(process.cwd(), 'node_modules')];
 
 const illegalChars = new Map();
 illegalChars.set('\\', '\\\\');
@@ -25,13 +30,15 @@ module.exports = function () {
       output: ['.js']
     },
     async load({ filePath, isDev }) {
-      const data = renderSync({
+      let data = renderSync({
         file: filePath,
-        importer
+        importer,
+        includePaths
       }).css.toString();
 
-      // TODO: minify output
-      if (!isDev) {}
+      if (!isDev) {
+        data = processString(data, {});
+      }
 
       if (/\.lit\.scss$/.exec(filePath)) {
           return  `import { css } from 'lit-element'; export default css${stringToTemplateLiteral(data)};`

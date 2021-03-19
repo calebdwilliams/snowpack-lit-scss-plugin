@@ -16,7 +16,8 @@
   "dependencies": {
     "node-sass-importer": "^2.0.2",
     "sass": "^1.32.8",
-    "string-to-template-literal": "^2.0.0"
+    "string-to-template-literal": "^2.0.0",
+    "uglifycss": "^0.0.29"
   },
   "devDependencies": {
     "standard-version": "^9.1.1"
