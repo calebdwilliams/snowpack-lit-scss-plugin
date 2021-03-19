@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/calebdwilliams/snowpack-lit-scss-plugin/compare/v0.0.2...v0.0.3) (2021-03-19)
+
+
+### Bug Fixes
+
+* switch 5o sass-module-importer ([16fe7a1](https://github.com/calebdwilliams/snowpack-lit-scss-plugin/commit/16fe7a1d4ffe86dfac67f781456115a2d90ee216))
+
 ### [0.0.2](https://github.com/calebdwilliams/snowpack-lit-scss-plugin/compare/v0.0.1...v0.0.2) (2021-03-19)
 
 
