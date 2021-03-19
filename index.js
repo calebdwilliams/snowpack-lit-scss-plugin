@@ -39,7 +39,7 @@ module.exports = function () {
       let { stdout, stderr } = await execa('sass', args, options);
 
       if (stderr) {
-        throw stderr;
+        console.log(stderr);
       }
 
       if (!isDev) {
