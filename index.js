@@ -1,17 +1,13 @@
-const { renderSync } = require('sass');
 const { processString } = require('uglifycss');
-const { join, dirname } = require('path');
-const sassImporter = require('sass-module-importer');
+const { dirname } = require('path');
 const execa = require('execa');
 const { readFileSync } = require('fs');
-
-const importer = sassImporter();
-const includePaths = ['./node_modules', join(process.cwd(), 'node_modules')];
 
 const illegalChars = new Map();
 illegalChars.set('\\', '\\\\');
 illegalChars.set('`', '\\`');
 illegalChars.set('$', '\\$');
+
 function stringToTemplateLiteral(s) {
   if (!s) {
     return '``';
