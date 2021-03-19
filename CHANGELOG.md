@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/calebdwilliams/snowpack-lit-scss-plugin/compare/v0.0.3...v0.0.4) (2021-03-19)
+
+
+### Features
+
+* move compile to a child process ([4f69930](https://github.com/calebdwilliams/snowpack-lit-scss-plugin/commit/4f699303761907869e87f4abe20aff3b3545268f))
+
 ### [0.0.3](https://github.com/calebdwilliams/snowpack-lit-scss-plugin/compare/v0.0.2...v0.0.3) (2021-03-19)
 
 
