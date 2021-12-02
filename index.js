@@ -20,7 +20,9 @@ function stringToTemplateLiteral(s) {
   return `\`${res}\``;
 }
 
-module.exports = function () {
+module.exports = function (snowpackConfig, pluginOptions) {
+  const { compileScssAsModule: optionCompileScssModule } = pluginOptions;
+
   return {
     name: 'snowpack-lit-scss-plugin',
     resolve: {
@@ -45,7 +47,7 @@ module.exports = function () {
       if (/\.lit\.scss$/.exec(filePath)) {
         return `import {css} from 'lit';export default css${stringToTemplateLiteral(stdout)};`
       } else {
-        return `const style=document.createElement('style');style.innerHTML=${stringToTemplateLiteral(stdout)};document.head.appendChild(style);export default null;`;
+        return `const s=document.createElement('style');s.innerHTML=${stringToTemplateLiteral(stdout)};document.head.appendChild(s);` + optionCompileScssModule ? "export default null;" : "";
       }
     }
   };
